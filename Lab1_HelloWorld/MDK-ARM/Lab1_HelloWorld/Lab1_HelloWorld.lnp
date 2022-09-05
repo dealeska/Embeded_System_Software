@@ -1,0 +1,23 @@
+--cpu Cortex-M3
+"lab1_helloworld\startup_stm32f103xb.o"
+"lab1_helloworld\main.o"
+"lab1_helloworld\stm32f1xx_it.o"
+"lab1_helloworld\stm32f1xx_hal_msp.o"
+"lab1_helloworld\stm32f1xx_hal_gpio_ex.o"
+"lab1_helloworld\stm32f1xx_hal_tim.o"
+"lab1_helloworld\stm32f1xx_hal_tim_ex.o"
+"lab1_helloworld\stm32f1xx_hal.o"
+"lab1_helloworld\stm32f1xx_hal_rcc.o"
+"lab1_helloworld\stm32f1xx_hal_rcc_ex.o"
+"lab1_helloworld\stm32f1xx_hal_gpio.o"
+"lab1_helloworld\stm32f1xx_hal_dma.o"
+"lab1_helloworld\stm32f1xx_hal_cortex.o"
+"lab1_helloworld\stm32f1xx_hal_pwr.o"
+"lab1_helloworld\stm32f1xx_hal_flash.o"
+"lab1_helloworld\stm32f1xx_hal_flash_ex.o"
+"lab1_helloworld\stm32f1xx_hal_exti.o"
+"lab1_helloworld\system_stm32f1xx.o"
+--strict --scatter "Lab1_HelloWorld\Lab1_HelloWorld.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "Lab1_HelloWorld.map" -o Lab1_HelloWorld\Lab1_HelloWorld.axf
