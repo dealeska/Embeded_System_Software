@@ -1,0 +1,23 @@
+--cpu Cortex-M3
+"lab2_snake\startup_stm32f103xb.o"
+"lab2_snake\main.o"
+"lab2_snake\stm32f1xx_it.o"
+"lab2_snake\stm32f1xx_hal_msp.o"
+"lab2_snake\stm32f1xx_hal_gpio_ex.o"
+"lab2_snake\stm32f1xx_hal_tim.o"
+"lab2_snake\stm32f1xx_hal_tim_ex.o"
+"lab2_snake\stm32f1xx_hal.o"
+"lab2_snake\stm32f1xx_hal_rcc.o"
+"lab2_snake\stm32f1xx_hal_rcc_ex.o"
+"lab2_snake\stm32f1xx_hal_gpio.o"
+"lab2_snake\stm32f1xx_hal_dma.o"
+"lab2_snake\stm32f1xx_hal_cortex.o"
+"lab2_snake\stm32f1xx_hal_pwr.o"
+"lab2_snake\stm32f1xx_hal_flash.o"
+"lab2_snake\stm32f1xx_hal_flash_ex.o"
+"lab2_snake\stm32f1xx_hal_exti.o"
+"lab2_snake\system_stm32f1xx.o"
+--strict --scatter "Lab2_Snake\Lab2_Snake.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "Lab2_Snake.map" -o Lab2_Snake\Lab2_Snake.axf
