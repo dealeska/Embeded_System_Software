@@ -42,7 +42,11 @@
 TIM_HandleTypeDef htim1;
 
 /* USER CODE BEGIN PV */
-
+// 1999 - 1 time per 2 seconds
+// 999 - 1 time per second
+// 199 - 5 times per second
+// 99 - 10 times per second
+const uint16_t speed_values[] =  { 1999, 999, 199, 99 };
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -57,9 +61,10 @@ static void MX_NVIC_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 int num = 0;
-int speed = 1000;
-const int maxSpeed = 1600;
-const int minSpeed = 500;
+int speed = 2;
+uint8_t is_speed_changed = 0;
+const int maxSpeed = 3;
+const int minSpeed = 0;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
@@ -67,15 +72,21 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	{		
 		HAL_TIM_Base_Start_IT(&htim1);
 	}
+	
 	if (GPIO_Pin == GPIO_PIN_4)
 	{
-		if (speed + 100 <= maxSpeed)			
-			speed += 100;		
+		if (speed + 1 <= maxSpeed) {		
+			speed += 1;
+		  is_speed_changed = 1;
+		}
 	}
+	
 	if (GPIO_Pin == GPIO_PIN_0)
 	{
-		if (speed - 100 >= minSpeed)			
-			speed -= 100;	
+		if (speed - 1 >= minSpeed) {	
+			speed -= 1;	
+		  is_speed_changed = 1;
+		}
 	}
 }
 
@@ -83,6 +94,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
    if(htim->Instance == TIM1)
    {
+		 if (is_speed_changed != 0) {
+		   __HAL_TIM_SET_AUTORELOAD(&htim1, speed_values[speed]);
+			 is_speed_changed = 0;
+		 }
 		 switch(num)
 		 {
 			 case 0: 
@@ -218,9 +233,9 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = speed;
+  htim1.Init.Prescaler = 63999;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 50000;
+  htim1.Init.Period = 199;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
