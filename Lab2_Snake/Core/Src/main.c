@@ -63,6 +63,7 @@ static void MX_NVIC_Init(void);
 int num = 0;
 int speed = 2;
 uint8_t is_speed_changed = 0;
+uint8_t is_button_stop_pressed = 0;
 const int maxSpeed = 3;
 const int minSpeed = 0;
 
@@ -70,7 +71,16 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	if (GPIO_Pin == GPIO_PIN_1)
 	{		
-		HAL_TIM_Base_Start_IT(&htim1);
+		if (!is_button_stop_pressed)
+		{
+			HAL_TIM_Base_Start_IT(&htim1);
+			is_button_stop_pressed = 1;
+		}
+		else 
+		{
+			HAL_TIM_Base_Stop_IT(&htim1);
+			is_button_stop_pressed = 0;
+		}
 	}
 	
 	if (GPIO_Pin == GPIO_PIN_4)
@@ -289,8 +299,8 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : BUTTON_START_Pin BUTTON_ADD_Pin */
   GPIO_InitStruct.Pin = BUTTON_START_Pin|BUTTON_ADD_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : USART_TX_Pin USART_RX_Pin */
@@ -309,7 +319,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin : BUTTON_SUB_Pin */
   GPIO_InitStruct.Pin = BUTTON_SUB_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(BUTTON_SUB_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LED1_Pin */
