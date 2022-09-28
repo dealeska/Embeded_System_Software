@@ -79,10 +79,16 @@ void Error_Handler(void);
 #define BUTTON_SUB_Pin GPIO_PIN_0
 #define BUTTON_SUB_GPIO_Port GPIOB
 #define BUTTON_SUB_EXTI_IRQn EXTI0_IRQn
+#define DSP_SHIFT_Pin GPIO_PIN_8
+#define DSP_SHIFT_GPIO_Port GPIOA
+#define DSP_DATA_Pin GPIO_PIN_9
+#define DSP_DATA_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
+#define DSP_LATCH_Pin GPIO_PIN_5
+#define DSP_LATCH_GPIO_Port GPIOB
 #define LED1_Pin GPIO_PIN_6
 #define LED1_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */

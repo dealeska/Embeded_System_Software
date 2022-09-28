@@ -69,9 +69,47 @@ uint8_t is_button_stop_pressed = 0;
 uint8_t button_start = 0;
 uint8_t button_add = 0;
 uint8_t button_sub = 0;
+int digits[12] = { 0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90, 0x7F, 0xFF };
+int position = 0x08;
 
 const int maxSpeed = 3;
 const int minSpeed = 0;
+
+void WriteDigit(int digit)
+{
+	int j = 0;
+	while (j < 8)
+	{
+		if (((digit << j) & 0x80) != 0)
+		{
+			HAL_GPIO_WritePin(DSP_DATA_GPIO_Port, DSP_DATA_Pin, GPIO_PIN_SET);
+		}
+		else
+		{
+			HAL_GPIO_WritePin(DSP_DATA_GPIO_Port, DSP_DATA_Pin, GPIO_PIN_RESET);
+		}
+		HAL_GPIO_WritePin(DSP_SHIFT_GPIO_Port, DSP_SHIFT_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(DSP_SHIFT_GPIO_Port, DSP_SHIFT_Pin, GPIO_PIN_RESET);
+		++j;
+	}
+	j = 0;
+	while (j < 8)
+	{
+		if (((position << j) & 0x80) != 0)
+		{
+			HAL_GPIO_WritePin(DSP_DATA_GPIO_Port, DSP_DATA_Pin, GPIO_PIN_SET);
+		}
+		else
+		{
+			HAL_GPIO_WritePin(DSP_DATA_GPIO_Port, DSP_DATA_Pin, GPIO_PIN_RESET);
+		}
+		HAL_GPIO_WritePin(DSP_SHIFT_GPIO_Port, DSP_SHIFT_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(DSP_SHIFT_GPIO_Port, DSP_SHIFT_Pin, GPIO_PIN_RESET);
+		++j;
+	}
+	HAL_GPIO_WritePin(DSP_LATCH_GPIO_Port, DSP_LATCH_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(DSP_LATCH_GPIO_Port, DSP_LATCH_Pin, GPIO_PIN_RESET);
+}
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
@@ -82,11 +120,15 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		{
 			HAL_TIM_Base_Start_IT(&htim1);
 			is_button_stop_pressed = 1;
+			
+		WriteDigit(digits[speed+1]);
 		}
 		else 
 		{
 			HAL_TIM_Base_Stop_IT(&htim1);
 			is_button_stop_pressed = 0;
+			
+		WriteDigit(digits[0]);
 		}
 	}
 	
@@ -97,6 +139,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			speed += 1;
 		  is_speed_changed = 1;
 		}
+		WriteDigit(digits[speed+1]);
 	}
 	
 	if (GPIO_Pin == GPIO_PIN_0 && button_sub == 0)
@@ -106,6 +149,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			speed -= 1;	
 		  is_speed_changed = 1;
 		}
+		WriteDigit(digits[speed+1]);
 	}
 }
 
@@ -186,13 +230,14 @@ int main(void)
 
   /* Initialize interrupts */
   MX_NVIC_Init();
-	
   /* USER CODE BEGIN 2 */
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET);
 	HAL_TIM_Base_Start_IT(&htim2);
+	
+	WriteDigit(digits[0]);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -362,10 +407,11 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED4_Pin|LED3_Pin|LED2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, LED4_Pin|LED3_Pin|LED2_Pin|DSP_SHIFT_Pin
+                          |DSP_DATA_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, DSP_LATCH_Pin|LED1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
@@ -385,8 +431,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LED4_Pin LED3_Pin LED2_Pin */
-  GPIO_InitStruct.Pin = LED4_Pin|LED3_Pin|LED2_Pin;
+  /*Configure GPIO pins : LED4_Pin LED3_Pin LED2_Pin DSP_SHIFT_Pin
+                           DSP_DATA_Pin */
+  GPIO_InitStruct.Pin = LED4_Pin|LED3_Pin|LED2_Pin|DSP_SHIFT_Pin
+                          |DSP_DATA_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -398,12 +446,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(BUTTON_SUB_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : LED1_Pin */
-  GPIO_InitStruct.Pin = LED1_Pin;
+  /*Configure GPIO pins : DSP_LATCH_Pin LED1_Pin */
+  GPIO_InitStruct.Pin = DSP_LATCH_Pin|LED1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LED1_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);
