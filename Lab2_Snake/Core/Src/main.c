@@ -184,11 +184,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		 {
 			 button_start = 0;
 		 }	
-		 else if (button_add == 1)
+		 if (button_add == 1)
 		 {
 			 button_add = 0;
 		 }
-		 else if (button_sub == 1)
+		 if (button_sub == 1)
 		 {
 			 button_sub = 0;
 		 }
@@ -367,7 +367,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 63999;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 1000;
+  htim2.Init.Period = 999;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
