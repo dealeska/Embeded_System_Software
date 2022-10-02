@@ -59,7 +59,6 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
-#define B1_EXTI_IRQn EXTI15_10_IRQn
 #define BTN_START_STOP_Pin GPIO_PIN_1
 #define BTN_START_STOP_GPIO_Port GPIOA
 #define BTN_START_STOP_EXTI_IRQn EXTI1_IRQn
@@ -67,8 +66,15 @@ void Error_Handler(void);
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3
 #define USART_RX_GPIO_Port GPIOA
-#define LD2_Pin GPIO_PIN_5
-#define LD2_GPIO_Port GPIOA
+#define BTN_PAUSE_Pin GPIO_PIN_4
+#define BTN_PAUSE_GPIO_Port GPIOA
+#define BTN_PAUSE_EXTI_IRQn EXTI4_IRQn
+#define LED_D13_Pin GPIO_PIN_5
+#define LED_D13_GPIO_Port GPIOA
+#define LED_D12_Pin GPIO_PIN_6
+#define LED_D12_GPIO_Port GPIOA
+#define LED_D11_Pin GPIO_PIN_7
+#define LED_D11_GPIO_Port GPIOA
 #define DS_SHIFT_Pin GPIO_PIN_8
 #define DS_SHIFT_GPIO_Port GPIOA
 #define DS_DATA_Pin GPIO_PIN_9
