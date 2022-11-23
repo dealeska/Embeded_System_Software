@@ -81,7 +81,7 @@ namespace STMReader
 
         private void CheckConstraints(TextBox textBox)
         {
-            if (float.TryParse(textBox.Text, out float val))
+            if (int.TryParse(textBox.Text, out int val))
             {
                 if (val > 255)
                 {
