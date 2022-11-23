@@ -1,0 +1,71 @@
+﻿<Window x:Class="STMReader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:STMReader" 
+        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        Title="MainWindow" Height="1080" Width="1920" ResizeMode="NoResize" WindowState="Maximized">
+
+    <Window.DataContext>
+        <local:Init />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <lvc:CartesianChart Opacity="3" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Series="{Binding Potentiometr}" LegendPosition="Bottom">
+
+            </lvc:CartesianChart>
+            <lvc:CartesianChart Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"
+                                Series="{Binding Lighting}" LegendPosition="Bottom"></lvc:CartesianChart>
+
+            <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label x:Name="Red_l" Content="Red" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" ></Label>
+                <TextBox x:Name="Red_tb" Grid.Row="1" Grid.Column="1" Text="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" LostFocus="Red_tb_LostFocus" />
+                <Label x:Name="Green_l" Content="Green" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" ></Label>
+                <TextBox x:Name="Green_tb" Grid.Row="1" Grid.Column="2" Text="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" LostFocus="Green_tb_LostFocus" />
+                <Label x:Name="Blue_l" Content="Blue" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" ></Label>
+                <TextBox x:Name="Blue_tb" Text="0" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" LostFocus="Blue_tb_LostFocus" />
+                <Button x:Name="SendRGB_b" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Width="90" HorizontalAlignment="Center" Content="Send color" FontSize="12" Background="#FF4897D4" BorderBrush="#FF3B9EE9" Grid.RowSpan="2" Grid.ColumnSpan="3" Click="SendRGB_b_Click"/>
+
+                <Label x:Name="Pieso_l" Content="Send signal for sound" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" ></Label>
+                <ToggleButton x:Name="Pieso_tog" Grid.Row="1" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Background="#FF4897D4" Foreground="#FF4897D4" Click="Pieso_tog_Click" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
