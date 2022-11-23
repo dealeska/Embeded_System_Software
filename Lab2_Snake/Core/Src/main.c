@@ -121,14 +121,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			HAL_TIM_Base_Start_IT(&htim1);
 			is_button_stop_pressed = 1;
 			
-		WriteDigit(digits[8]);
+		WriteDigit(digits[speed+1]);
 		}
 		else 
 		{
 			HAL_TIM_Base_Stop_IT(&htim1);
 			is_button_stop_pressed = 0;
 			
-		WriteDigit(digits[9]);
+		WriteDigit(digits[0]);
 		}
 	}
 	
@@ -139,7 +139,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			speed += 1;
 		  is_speed_changed = 1;
 		}
-		WriteDigit(digits[10]);
+		WriteDigit(digits[speed+1]);
 	}
 	
 	if (GPIO_Pin == GPIO_PIN_0 && button_sub == 0)
@@ -149,7 +149,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			speed -= 1;	
 		  is_speed_changed = 1;
 		}
-		WriteDigit(digits[11]);
+		WriteDigit(digits[speed+1]);
 	}
 }
 
