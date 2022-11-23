@@ -15,7 +15,7 @@ namespace STMReader
         public static List<int> PotentiometrBuffer = new List<int>();
         public static List<int> LightBuffer = new List<int>();
 
-        static SerialPort ComPort = new SerialPort("COM3", 115200, Parity.None, 8, StopBits.One);
+        static SerialPort ComPort = new SerialPort("COM4", 115200, Parity.None, 8, StopBits.One);
 
         [STAThread]
         public static void Start()
@@ -33,24 +33,27 @@ namespace STMReader
         {
             Task.Run(() =>
             {
-                int readCount;
-                int bufReady = 0;
-                byte[] buf = new byte[128];
-                while (bufReady < buf.Length)
-                {
-                    readCount = ComPort.Read(buf, bufReady, buf.Length - bufReady);
-                    bufReady += readCount;
-                }
+                //int readCount;
+                //int bufReady = 0;
+                //byte[] buf = new byte[128];
+                //while (bufReady < buf.Length)
+                //{
+                //    readCount = ComPort.Read(buf, bufReady, buf.Length - bufReady);
+                //    bufReady += readCount;
+                //}
 
-                string data = Encoding.UTF8.GetString(buf);
-                var values = data.Split("\n\r");
-                foreach (var val in values)
-                {
+                
+                //foreach (var val in values)
+                //{
                     try
                     {
+                        string raw = ComPort.ReadLine();
+                        string data = Encoding.UTF8.GetString(Encoding.Default.GetBytes(raw));
+                        //var values = data.Split("\n\r");
+
                         int potentiometrValue = 0;
                         int lightValue = 0;
-                        string value = val.Trim(new char[] { '\r', '\n' });
+                        string value = data.Trim(new char[] { '\r', '\n' });
 
                         if (value.EndsWith(';'))
                         {
@@ -74,7 +77,7 @@ namespace STMReader
                     {
                         Console.WriteLine(ex.Message);
                     }
-                }
+                //}
             });
         }
     }

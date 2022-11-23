@@ -25,7 +25,7 @@ namespace STMReader
                         var val = Logic.PotentiometrBuffer[0];
                         Dispatcher.BeginInvoke(new Action(() =>
                         {
-                            if (Logic.PotentiometrValues.Count > 100)
+                            if (Logic.PotentiometrValues.Count > 50)
                             {
                                 Logic.PotentiometrValues.RemoveAt(0);
                             }
