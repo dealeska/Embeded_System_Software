@@ -100,15 +100,27 @@ namespace STMReader
             }
         }
 
-        private void Pieso_tog_Click(object sender, RoutedEventArgs e)
+        private void Led1_tog_Click(object sender, RoutedEventArgs e)
         {
-            if (Pieso_tog.IsChecked == true)
+            if (Led1_tog.IsChecked == true)
             {
-                Logic.Send("PiesoIsOn");
+                Logic.Send("LedB:1");
             }
             else
             {
-                Logic.Send("PiesoIsOff");
+                Logic.Send("LedB:0");
+            }
+        }
+
+        private void Led2_tog_Click(object sender, RoutedEventArgs e)
+        {
+            if (Led2_tog.IsChecked == true)
+            {
+                Logic.Send("LedR:1");
+            }
+            else
+            {
+                Logic.Send("LedR:0");
             }
         }
     }
