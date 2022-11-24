@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.IO.Ports;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace STMReader
 {
@@ -13,7 +14,7 @@ namespace STMReader
         public static readonly ObservableCollection<ObservableValue> PotentiometrValues = new ObservableCollection<ObservableValue>();        
         public static readonly ObservableCollection<ObservableValue> LightValues = new ObservableCollection<ObservableValue>();
         public static List<float> PotentiometrBuffer = new List<float>();
-        public static List<float> LightBuffer = new List<float>();
+        public static List<int> LightBuffer = new List<int>();
 
         static SerialPort ComPort = new SerialPort("COM4", 115200, Parity.None, 8, StopBits.One);
 
@@ -52,7 +53,7 @@ namespace STMReader
                         //var values = data.Split("\n\r");
 
                         float potentiometrValue = 0f;
-                        float lightValue = 0f;
+                        int lightValue = 0;
                         string value = data.Trim(new char[] { '\r', '\n' });
 
                         if (value.EndsWith(';'))
@@ -60,14 +61,14 @@ namespace STMReader
                             var index = value.IndexOf(',');
                             var end = value.IndexOf(';');
 
-                            potentiometrValue = float.Parse(value.Substring(0, index));
-                            lightValue = float.Parse(value.Substring(index+1, end - index - 1));
+                            potentiometrValue = float.Parse(value.Substring(0, index), CultureInfo.InvariantCulture);
+                            lightValue = int.Parse(value.Substring(index+1, end - index - 1), CultureInfo.InvariantCulture);
 
-                            if (potentiometrValue <= 4095)
+                            if (potentiometrValue <= 3.3f && potentiometrValue >= 0.0f)
                             {
                                 PotentiometrBuffer.Add(potentiometrValue);
                             }
-                            if (lightValue <= 4095)
+                            if (lightValue <= 100 && lightValue >= 0)
                             {
                                 LightBuffer.Add(lightValue);
                             }

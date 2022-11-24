@@ -9,14 +9,10 @@
           "HarfBuzzSharp.NativeAssets.macOS": "2.8.2.3"
         },
         "compile": {
-          "lib/net6.0/HarfBuzzSharp.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/HarfBuzzSharp.dll": {}
         },
         "runtime": {
-          "lib/net6.0/HarfBuzzSharp.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/HarfBuzzSharp.dll": {}
         }
       },
       "HarfBuzzSharp.NativeAssets.macOS/2.8.2.3": {
@@ -60,14 +56,10 @@
       "LiveChartsCore/2.0.0-beta.516": {
         "type": "package",
         "compile": {
-          "lib/net6.0/LiveChartsCore.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/LiveChartsCore.dll": {}
         },
         "runtime": {
-          "lib/net6.0/LiveChartsCore.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/LiveChartsCore.dll": {}
         }
       },
       "LiveChartsCore.SkiaSharpView/2.0.0-beta.516": {
@@ -78,14 +70,10 @@
           "SkiaSharp.HarfBuzz": "2.88.3"
         },
         "compile": {
-          "lib/net6.0/LiveChartsCore.SkiaSharpView.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/LiveChartsCore.SkiaSharpView.dll": {}
         },
         "runtime": {
-          "lib/net6.0/LiveChartsCore.SkiaSharpView.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/LiveChartsCore.SkiaSharpView.dll": {}
         }
       },
       "LiveChartsCore.SkiaSharpView.WPF/2.0.0-beta.516": {
@@ -95,14 +83,10 @@
           "SkiaSharp.Views.WPF": "2.88.3"
         },
         "compile": {
-          "lib/netcoreapp3.1/LiveChartsCore.SkiaSharpView.WPF.dll": {
-            "related": ".xml"
-          }
+          "lib/netcoreapp3.1/LiveChartsCore.SkiaSharpView.WPF.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.1/LiveChartsCore.SkiaSharpView.WPF.dll": {
-            "related": ".xml"
-          }
+          "lib/netcoreapp3.1/LiveChartsCore.SkiaSharpView.WPF.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
@@ -111,14 +95,10 @@
       "MaterialDesignColors/2.0.9": {
         "type": "package",
         "compile": {
-          "lib/net6.0/MaterialDesignColors.dll": {
-            "related": ".pdb"
-          }
+          "lib/net6.0/MaterialDesignColors.dll": {}
         },
         "runtime": {
-          "lib/net6.0/MaterialDesignColors.dll": {
-            "related": ".pdb"
-          }
+          "lib/net6.0/MaterialDesignColors.dll": {}
         }
       },
       "MaterialDesignThemes/4.6.0": {
@@ -127,14 +107,10 @@
           "MaterialDesignColors": "[2.0.7, 3.0.0)"
         },
         "compile": {
-          "lib/net6.0/MaterialDesignThemes.Wpf.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/MaterialDesignThemes.Wpf.dll": {}
         },
         "runtime": {
-          "lib/net6.0/MaterialDesignThemes.Wpf.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/MaterialDesignThemes.Wpf.dll": {}
         },
         "build": {
           "build/MaterialDesignThemes.targets": {}
@@ -229,14 +205,10 @@
           "SkiaSharp.NativeAssets.macOS": "2.88.3"
         },
         "compile": {
-          "lib/net6.0/SkiaSharp.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/SkiaSharp.dll": {}
         },
         "runtime": {
-          "lib/net6.0/SkiaSharp.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/SkiaSharp.dll": {}
         }
       },
       "SkiaSharp.HarfBuzz/2.88.3": {
@@ -246,14 +218,10 @@
           "SkiaSharp": "2.88.3"
         },
         "compile": {
-          "lib/net6.0/SkiaSharp.HarfBuzz.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/SkiaSharp.HarfBuzz.dll": {}
         },
         "runtime": {
-          "lib/net6.0/SkiaSharp.HarfBuzz.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/SkiaSharp.HarfBuzz.dll": {}
         }
       },
       "SkiaSharp.NativeAssets.macOS/2.88.3": {
@@ -301,14 +269,10 @@
           "System.Drawing.Common": "4.5.1"
         },
         "compile": {
-          "lib/netcoreapp3.1/SkiaSharp.Views.Desktop.Common.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.1/SkiaSharp.Views.Desktop.Common.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.1/SkiaSharp.Views.Desktop.Common.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.1/SkiaSharp.Views.Desktop.Common.dll": {}
         }
       },
       "SkiaSharp.Views.WPF/2.88.3": {
@@ -318,14 +282,10 @@
           "SkiaSharp.Views.Desktop.Common": "2.88.3"
         },
         "compile": {
-          "lib/netcoreapp3.1/SkiaSharp.Views.WPF.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.1/SkiaSharp.Views.WPF.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.1/SkiaSharp.Views.WPF.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.1/SkiaSharp.Views.WPF.dll": {}
         }
       },
       "System.Drawing.Common/4.5.1": {
@@ -357,14 +317,10 @@
           "runtime.native.System.IO.Ports": "7.0.0"
         },
         "compile": {
-          "lib/net6.0/System.IO.Ports.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.IO.Ports.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.IO.Ports.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.IO.Ports.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -1035,32 +991,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alesya\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\kotov\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\POVS\\Embeded_System_Software\\Lab4_5_ComPort\\STMReader\\STMReader.csproj",
+      "projectUniqueName": "D:\\__BSUIR__\\7_sem\\POVS\\embeded_system_software\\Lab4_5_ComPort\\STMReader\\STMReader.csproj",
       "projectName": "STMReader",
-      "projectPath": "D:\\POVS\\Embeded_System_Software\\Lab4_5_ComPort\\STMReader\\STMReader.csproj",
-      "packagesPath": "C:\\Users\\Alesya\\.nuget\\packages\\",
-      "outputPath": "D:\\POVS\\Embeded_System_Software\\Lab4_5_ComPort\\STMReader\\obj\\",
+      "projectPath": "D:\\__BSUIR__\\7_sem\\POVS\\embeded_system_software\\Lab4_5_ComPort\\STMReader\\STMReader.csproj",
+      "packagesPath": "C:\\Users\\kotov\\.nuget\\packages\\",
+      "outputPath": "D:\\__BSUIR__\\7_sem\\POVS\\embeded_system_software\\Lab4_5_ComPort\\STMReader\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Alesya\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\kotov\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0-windows"
+        "net6.0-windows7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1102,8 +1052,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -1115,7 +1064,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

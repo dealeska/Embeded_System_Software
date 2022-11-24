@@ -85,8 +85,12 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
     if(hadc->Instance == ADC1)
     {
       char cmd[50];
+			uint16_t light;
+			float potentiomentr;
+			light = ((double)dma_buff[0] / 4095) * 100;
+			potentiomentr = dma_buff[1] * 3.3 / 4095;
 			                            //Potentiometr  // Light
-			snprintf(cmd, 50, "%d,%d;\n", dma_buff[1], dma_buff[0]);
+			snprintf(cmd, 50, "%.2f,%d;\n", potentiomentr, light);
 			HAL_UART_Transmit_IT(&huart2, (uint8_t*)cmd, strlen(cmd));
     }
 }
