@@ -104,11 +104,11 @@ namespace STMReader
         {
             if (Led1_tog.IsChecked == true)
             {
-                Logic.Send("LedB:1");
+                Logic.Send("LedB:1;");
             }
             else
             {
-                Logic.Send("LedB:0");
+                Logic.Send("LedB:0;");
             }
         }
 
@@ -116,11 +116,11 @@ namespace STMReader
         {
             if (Led2_tog.IsChecked == true)
             {
-                Logic.Send("LedR:1");
+                Logic.Send("LedR:1;");
             }
             else
             {
-                Logic.Send("LedR:0");
+                Logic.Send("LedR:0;");
             }
         }
     }
