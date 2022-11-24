@@ -17,11 +17,11 @@ namespace STMReader
                 Fill = null,
                 Stroke = new SolidColorPaint(SKColors.Red, 2),
                 GeometryStroke = new SolidColorPaint(SKColors.Red, 2),
-                GeometrySize = 15,
+                GeometrySize = 0,
                 LineSmoothness = 0.5,
-                DataLabelsSize= 15,
-                DataLabelsPaint = new SolidColorPaint(SKColors.Blue),
-                DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.Top,
+                DataLabelsSize= 0,
+                /*DataLabelsPaint = new SolidColorPaint(SKColors.Blue),
+                DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.Top,*/
             }            
         };
 
@@ -34,11 +34,11 @@ namespace STMReader
                 Fill = null,
                 Stroke = new SolidColorPaint(SKColors.Blue, 2),
                 GeometryStroke = new SolidColorPaint(SKColors.Blue, 2),
-                GeometrySize = 15,
+                GeometrySize = 0,
                 LineSmoothness = 0.5,
-                DataLabelsSize= 15,
-                DataLabelsPaint = new SolidColorPaint(SKColors.Red),
-                DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.Top,
+                DataLabelsSize= 0,
+                /*DataLabelsPaint = new SolidColorPaint(SKColors.Red),
+                DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.Top,*/
             }
 
         };
