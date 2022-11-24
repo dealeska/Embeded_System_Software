@@ -61,7 +61,12 @@ namespace STMReader
                 blue = Blue_tb.Text
             };
 
-            Logic.Send($"RGB=r:{rgb.red},g:{rgb.green},b:{rgb.blue}");
+            var message = $"RGB=r:{rgb.red},g:{rgb.green},b:{rgb.blue};";
+
+            for (int i = 0; i < message.Length; i++)
+            {
+                Logic.Send(message[i].ToString());
+            }
         }
 
         private void Red_tb_LostFocus(object sender, RoutedEventArgs e)
