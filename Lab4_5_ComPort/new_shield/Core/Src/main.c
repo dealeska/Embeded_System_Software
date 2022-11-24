@@ -51,7 +51,10 @@ UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 uint32_t dma_buff[2];
-char rgb_command[21];
+//char rgb_command[21];
+uint8_t rx_data;
+uint8_t rx_index = 0;
+uint8_t rx_buffer[25];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -83,19 +86,31 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
     {
       char cmd[50];
 			                            //Potentiometr  // Light
-			//snprintf(cmd, 50, "%d,%d;\n", dma_buff[1], dma_buff[0]);
-			//HAL_UART_Transmit_IT(&huart2, (uint8_t*)cmd, strlen(cmd));
+			snprintf(cmd, 50, "%d,%d;\n", dma_buff[1], dma_buff[0]);
+			HAL_UART_Transmit_IT(&huart2, (uint8_t*)cmd, strlen(cmd));
     }
+}
+
+void rgb_callback() {
+  if (rx_data != ';' && rx_index < 25) {
+	  rx_buffer[rx_index++] = rx_data;
+	} else {
+			int r = 0, g = 0, b = 0;
+			if (sscanf(rx_buffer, "RGB=r:%d,g:%d,b:%d", &r, &g, &b) >= 1) {
+				set_rgb(r, g, b);
+			}
+			rx_index = 0;
+			memset(rx_buffer, 0, 25);
+	}
+	
+	HAL_UART_Receive_IT(&huart2, &rx_data, 1);
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 		if(huart == &huart2)
     {	
-			uint8_t r = 0, g = 0, b = 0;
-			if (sscanf(rgb_command, "RGB=r:%hhu,g:%hhu,b:%hhu", &r, &g, &b) >= 1) {
-				set_rgb(r, g, b);
-			}				
+			rgb_callback();
     }
 }
 /* USER CODE END 0 */
@@ -144,8 +159,7 @@ int main(void)
 	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
 	
-	HAL_UART_Receive_IT(&huart2, (uint8_t*)rgb_command, 21);
-
+	HAL_UART_Receive_IT(&huart2, &rx_data, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
