@@ -26,7 +26,7 @@ namespace STMReader
 
         public static void Send(string message)
         {
-            ComPort.WriteLine(message);
+            ComPort.Write(message);
         }         
 
         private static void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
