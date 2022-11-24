@@ -12,8 +12,8 @@ namespace STMReader
     {
         public static readonly ObservableCollection<ObservableValue> PotentiometrValues = new ObservableCollection<ObservableValue>();        
         public static readonly ObservableCollection<ObservableValue> LightValues = new ObservableCollection<ObservableValue>();
-        public static List<int> PotentiometrBuffer = new List<int>();
-        public static List<int> LightBuffer = new List<int>();
+        public static List<float> PotentiometrBuffer = new List<float>();
+        public static List<float> LightBuffer = new List<float>();
 
         static SerialPort ComPort = new SerialPort("COM4", 115200, Parity.None, 8, StopBits.One);
 
@@ -51,8 +51,8 @@ namespace STMReader
                         string data = Encoding.UTF8.GetString(Encoding.Default.GetBytes(raw));
                         //var values = data.Split("\n\r");
 
-                        int potentiometrValue = 0;
-                        int lightValue = 0;
+                        float potentiometrValue = 0f;
+                        float lightValue = 0f;
                         string value = data.Trim(new char[] { '\r', '\n' });
 
                         if (value.EndsWith(';'))
@@ -60,8 +60,8 @@ namespace STMReader
                             var index = value.IndexOf(',');
                             var end = value.IndexOf(';');
 
-                            potentiometrValue = int.Parse(value.Substring(0, index));
-                            lightValue = int.Parse(value.Substring(index+1, end - index - 1));
+                            potentiometrValue = float.Parse(value.Substring(0, index));
+                            lightValue = float.Parse(value.Substring(index+1, end - index - 1));
 
                             if (potentiometrValue <= 4095)
                             {
